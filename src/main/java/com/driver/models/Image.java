@@ -14,6 +14,7 @@ public class Image {
     public Image(Blog blog, String description, String dimensions) {
     }
 
+
     public Image(int id, String description, String dimensions) {
         Id = id;
         this.description = description;

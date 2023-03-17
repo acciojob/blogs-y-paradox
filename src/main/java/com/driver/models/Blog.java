@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "blogs")
 public class Blog {
 
     @Id
@@ -18,6 +19,12 @@ public class Blog {
     private Date pubDate;
 
     public Blog(User user, String title, String content) {
+    }
+
+    public Blog(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
     }
 
     public Blog(int id, String title, String content, Date pubDate) {

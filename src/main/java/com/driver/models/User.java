@@ -15,7 +15,12 @@ public class User{
     private String firstName = "test";
     private String lastName = "test";
 
-    public User(String username, String password) {
+    public User() {
+    }
+
+    public User(String userName, String passWord) {
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
     public User(int id, String userName, String passWord) {
