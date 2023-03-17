@@ -1,76 +1,82 @@
 package com.driver.models;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="user")
 public class User{
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
-    private String userName;
-    private String passWord;
-    private String firstName = "test";
-    private String lastName = "test";
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private String username;
 
-    public User() {
+    public String getUsername() {
+        return username;
     }
 
-    public User(String userName, String passWord) {
-        this.userName = userName;
-        this.passWord = passWord;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public User(int id, String userName, String passWord) {
-        Id = id;
-        this.userName = userName;
-        this.passWord = passWord;
-    }
+    private String lastname="test";
+    private String firstname="test";
+    private String password;
 
+    public User(){
+
+    }
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Blog> blogList = new ArrayList<>();
+    public User(String username,String password){
+        this.username=username;
+        this.password=password;
+    }
+
+
+    @OneToMany(mappedBy="user",cascade=CascadeType.ALL)
+    private List<Blog> blogList=new ArrayList();
+
+
 
     public List<Blog> getBlogList() {
         return blogList;

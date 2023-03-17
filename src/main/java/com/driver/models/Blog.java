@@ -7,39 +7,26 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "blogs")
+@Table(name="blog")
 public class Blog {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
     private String title;
     private String content;
     @CreationTimestamp
     private Date pubDate;
 
-    public Blog(User user, String title, String content) {
-    }
+    public Blog(){
 
-    public Blog(String title, String content, User user) {
-        this.title = title;
-        this.content = content;
-        this.user = user;
-    }
-
-    public Blog(int id, String title, String content, Date pubDate) {
-        Id = id;
-        this.title = title;
-        this.content = content;
-        this.pubDate = pubDate;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -66,9 +53,16 @@ public class Blog {
         this.pubDate = pubDate;
     }
 
+    public Blog(User user, String title, String content) {
+        this.user = user;
+        this.title = title;
+        this.content = content;
+
+    }
     @ManyToOne
     @JoinColumn
-    User user;
+    private User user;
+
 
     public User getUser() {
         return user;
@@ -78,9 +72,6 @@ public class Blog {
         this.user = user;
     }
 
-    @OneToMany (mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Image> imageList;
-
     public List<Image> getImageList() {
         return imageList;
     }
@@ -88,4 +79,7 @@ public class Blog {
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
     }
+
+    @OneToMany(mappedBy = "blog",cascade=CascadeType.ALL)
+    private List<Image> imageList;
 }
